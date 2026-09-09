@@ -1,3 +1,26 @@
 .DS_Store
 *.pyc
 __pycache__/
+
+# Hermes profile runtime artifacts (generated on first run; never commit)
+profiles/*/auth.lock
+profiles/*/cache/
+profiles/*/config.yaml
+profiles/*/state.db*
+profiles/*/*.lock
+profiles/*/logs/
+profiles/*/sessions/
+profiles/*/memories/
+profiles/*/cron/
+profiles/*/hooks/
+profiles/*/pairing/
+profiles/*/audio_cache/
+profiles/*/image_cache/
+profiles/*/.update_check
+profiles/*/ollama_cloud_models_cache.json
+profiles/*/provider_models_cache.json
+profiles/*/models_dev_cache.json
+profiles/*/models_dev_cache.etag
+profiles/*/projects.db
+profiles/*/tui-theme-boot.json
+profiles/*/desktop/
