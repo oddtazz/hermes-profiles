@@ -2,6 +2,13 @@
 *.pyc
 __pycache__/
 
+# ── Fleet runtime state at repo root (created by the gateway) ──
+kanban.db
+kanban.db-*
+kanban/
+install_id
+.install_id.lock
+
 # ── Hermes profile runtime artifacts (generated on first run; never commit) ──
 profiles/*/.env
 profiles/*/auth.lock
