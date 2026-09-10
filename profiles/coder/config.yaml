@@ -1,0 +1,11 @@
+model:
+  default: deepseek/deepseek-v4-pro
+  base_url: https://api.commandcode.ai/provider/v1
+  provider: commandcode
+platforms:
+  discord:
+    enabled: true
+secrets:
+  bitwarden:
+    enabled: true
+    project_id: 1c1f7741-f8c9-4820-afe3-b49d00d3965c

@@ -2,14 +2,11 @@
 *.pyc
 __pycache__/
 
-# Hermes profile runtime artifacts (generated on first run; never commit)
+# ── Hermes profile runtime artifacts (generated on first run; never commit) ──
 profiles/*/.env
-profiles/*/skills/.hub/
 profiles/*/auth.lock
-profiles/*/cache/
-profiles/*/config.yaml
-profiles/*/state.db*
 profiles/*/*.lock
+profiles/*/cache/
 profiles/*/logs/
 profiles/*/sessions/
 profiles/*/memories/
@@ -18,11 +15,48 @@ profiles/*/hooks/
 profiles/*/pairing/
 profiles/*/audio_cache/
 profiles/*/image_cache/
+profiles/*/desktop/
+profiles/*/bin/
+profiles/*/gateway/
+profiles/*/runtime/
+profiles/*/state/
+profiles/*/state.db*
 profiles/*/.update_check
+profiles/*/.clean_shutdown
+profiles/*/.skills_prompt_snapshot.json
+profiles/*/gateway_state.json
+profiles/*/gateway-starts.log
+profiles/*/channel_directory.json
 profiles/*/ollama_cloud_models_cache.json
 profiles/*/provider_models_cache.json
 profiles/*/models_dev_cache.json
 profiles/*/models_dev_cache.etag
 profiles/*/projects.db
 profiles/*/tui-theme-boot.json
-profiles/*/desktop/
+
+# ── Bundled skill library, re-synced by Hermes at runtime ──
+# Only the profile's own skills belong in this repo.
+profiles/*/skills/.hub/
+profiles/*/skills/.bundled_manifest
+profiles/*/skills/apple/
+profiles/*/skills/autonomous-ai-agents/
+profiles/*/skills/creative/
+profiles/*/skills/devops/
+profiles/*/skills/discord-bot/
+profiles/*/skills/email/
+profiles/*/skills/finance/
+profiles/*/skills/fitness/
+profiles/*/skills/github/
+profiles/*/skills/health/
+profiles/*/skills/infrastructure/
+profiles/*/skills/media/
+profiles/*/skills/mlops/
+profiles/*/skills/note-taking/
+profiles/*/skills/productivity/
+profiles/*/skills/research/
+profiles/*/skills/security/
+profiles/*/skills/smart-home/
+profiles/*/skills/social-media/
+profiles/*/skills/software-development/
+profiles/*/skills/web/
+profiles/*/skills/web-automation/
