@@ -4,6 +4,7 @@ __pycache__/
 
 # Hermes profile runtime artifacts (generated on first run; never commit)
 profiles/*/.env
+profiles/*/skills/.hub/
 profiles/*/auth.lock
 profiles/*/cache/
 profiles/*/config.yaml
