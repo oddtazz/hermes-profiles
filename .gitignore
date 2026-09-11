@@ -30,10 +30,17 @@ profiles/*/state/
 profiles/*/state.db*
 profiles/*/.update_check
 profiles/*/.clean_shutdown
+profiles/*/.curator_backups/
 profiles/*/.skills_prompt_snapshot.json
+profiles/*/discord_threads.json
+profiles/*/verification_evidence.db
 profiles/*/gateway_state.json
 profiles/*/gateway-starts.log
 profiles/*/channel_directory.json
+profiles/*/skills/.curator_ledger.jsonl
+profiles/*/skills/.curator_state
+profiles/*/skills/.usage.json
+profiles/*/skills/.usage.json.lock
 profiles/*/ollama_cloud_models_cache.json
 profiles/*/provider_models_cache.json
 profiles/*/models_dev_cache.json
