@@ -1,12 +1,12 @@
 model:
   provider: commandcode
-  default: deepseek/deepseek-v4-pro
+  default: deepseek/deepseek-v4.1-flash
   base_url: https://api.commandcode.ai/provider/v1
 web:
   backend: nous
 browser:
   cloud_provider: nous
-_config_version: 39
+_config_version: 42
 image_gen:
   provider: nous
 platforms:
@@ -16,3 +16,4 @@ secrets:
   bitwarden:
     enabled: true
     project_id: 1c1f7741-f8c9-4820-afe3-b49d00d3965c
+agent: {}
