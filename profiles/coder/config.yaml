@@ -1,5 +1,5 @@
 model:
-  default: deepseek/deepseek-v4-pro
+  default: deepseek/deepseek-v4.1-flash
   base_url: https://api.commandcode.ai/provider/v1
   provider: commandcode
 platforms:
@@ -14,3 +14,7 @@ tool_loop_guardrails:
 onboarding:
   seen:
     tool_progress_prompt: true
+plugins:
+  enabled: []
+_config_version: 42
+agent: {}
