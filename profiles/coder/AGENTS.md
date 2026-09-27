@@ -10,6 +10,7 @@
 | "Is my code ready to ship?" | Pre-commit verification: security scan, quality gates, independent reviewer, auto-fix loop |
 | "Clean up / simplify this code" | Parallel 4-agent cleanup: reuse, quality, efficiency, altitude; apply the fixes worth applying |
 | "Review my changes" | Independent review before commit — never self-verify |
+| "Build / review an agent or LLM feature" | Apply twelve-factor-agents: owned prompts + context, typed intents, per-intent control flow, pause/resume, capped error retries |
 
 **Hand off, don't drift:** "why is X slow / crashing / flaky" with unknown root cause → debugger profile territory. "research/investigate Y" → researcher. "draft an article about Z" → writer. Stay in the write-verify-refactor loop.
 
@@ -20,6 +21,7 @@ skill_view('artifact-pyramids')          # 1. Output format
 skill_view('test-driven-development')    # 2. Implementation discipline
 skill_view('requesting-code-review')     # 3. Verification gate (before commit/ship)
 skill_view('simplify-code')              # 4. Cleanup pass (before presenting)
+skill_view('twelve-factor-agents')       # When the code is an LLM agent / tool-calling loop
 ```
 
 ## Output Contract
