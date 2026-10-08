@@ -13,3 +13,7 @@ secrets:
 tool_loop_guardrails:
   hard_stop_enabled: true
 agent: {}
+# Optional: load private writing skills (voice profile, delivery, etc.) kept outside this repo.
+# skills:
+#   external_dirs:
+#     - ~/.hermes/skills/writing

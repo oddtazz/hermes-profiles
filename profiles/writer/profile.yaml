@@ -3,3 +3,9 @@ skills:
   required:
     - artifact-pyramids
     - editorial-methodology
+  bundled:
+    - humanizer
+  local:
+    - de-ai-writing
+    - corpus-style-analysis
+    - docs-example-verification

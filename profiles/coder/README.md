@@ -22,6 +22,11 @@ Source: `shared` = repo `skills/` pool (symlinked); `bundled` = ships with Herme
 | `simplify-code` | bundled | Parallel 4-agent cleanup pass before presenting changes |
 | `twelve-factor-agents` | local | Design rules for LLM agents and tool-calling loops |
 
+## Configuration
+
+`config.yaml` is not tracked: Hermes rewrites it. Copy `config.example.yaml` to
+`config.yaml` and adjust the model and secrets for your install.
+
 ## Output Format
 
 Artifact pyramid. Response is the absolute path to `00-index.md`.

@@ -20,6 +20,11 @@ Source: `shared` = repo `skills/` pool (symlinked); `bundled` = ships with Herme
 | `research-methodology` | shared | Source evaluation, triangulation, synthesis |
 | `researcher-workflow` | shared | Non-interactive deep research pipeline for assigned tasks |
 
+## Configuration
+
+`config.yaml` is not tracked: Hermes rewrites it. Copy `config.example.yaml` to
+`config.yaml` and adjust the model and secrets for your install.
+
 ## Output Format
 
 Artifact pyramid. Response is the absolute path to `00-index.md`.

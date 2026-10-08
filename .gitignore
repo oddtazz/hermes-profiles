@@ -97,3 +97,6 @@ profiles/*/skills/.curator_backups/
 /state.db*
 /shared-state.db*
 /kanban.db.*.lock
+
+# ── Live config: Hermes rewrites it (version bumps, aux blocks). Ship config.example.yaml instead ──
+profiles/*/config.yaml
