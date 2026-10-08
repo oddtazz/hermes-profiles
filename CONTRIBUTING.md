@@ -32,6 +32,15 @@ profiles/some-profile/skills/    ← Symlinks
   `skills/` directory back to the repo root `skills/` directory.
 - If a profile needs a skill that doesn't exist in the shared pool, add the
   skill to `skills/` first, then symlink from the profile.
+- **Never shadow a bundled skill.** Hermes syncs its bundled skills into
+  `profiles/<name>/skills/<category>/`. If the profile also has a top-level copy
+  or symlink with the same `name:`, a bare `skill_view('<name>')` fails with
+  "Ambiguous skill name" once the two differ (identical copies break on the next
+  Hermes update). To use a bundled skill, rely on the synced copy. To fork one,
+  give the fork a new `name:`, or delete the bundled copy from the profile (sync
+  then records it as user-removed and does not restore it).
+- Run `scripts/check-skill-collisions.py` before committing skill changes. It
+  exits 1 on any duplicate skill name in a profile.
 
 ## Skill Design Guidelines
 
