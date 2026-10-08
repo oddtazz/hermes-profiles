@@ -5,6 +5,12 @@ Hermes refuses a bare skill_view('<name>') when two different skills share a
 name in one tier, and identical copies silently diverge on the next bundled
 update. Each profile must hold exactly one copy of every skill name.
 
+CI caveat: bundled skills are synced into profiles/<name>/skills/<category>/ only at
+runtime and are git-ignored, so on a CI checkout this script sees shared and local
+skills only. There, shadowing a bundled skill is caught solely by validate_profiles.py,
+and only if the skill is listed under `bundled:` in profile.yaml. Run this locally
+against a live install to catch an undeclared shadow.
+
 Usage: scripts/check-skill-collisions.py [profiles_dir]   (exit 1 on collision)
 """
 import collections
