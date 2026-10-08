@@ -70,7 +70,7 @@ hermes-profiles/
 │   ├── site-reliability-engineering/
 │   ├── software-architecture-analysis/
 │   ├── strategy-frameworks/
-│   ├── systematic-debugging/
+│   ├── root-cause-debugging/
 │   ├── tailscale/
 │   ├── technical-documentation/
 │   ├── technology-radar/

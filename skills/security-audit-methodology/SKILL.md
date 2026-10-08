@@ -7,7 +7,7 @@ license: MIT
 metadata:
   hermes:
     tags: [security, audit, vulnerability, threat-modeling, OWASP, penetration-testing, architecture-review, supply-chain, sslm]
-    related_skills: [review-methodology, systematic-debugging, codebase-security-audit]
+    related_skills: [review-methodology, root-cause-debugging, codebase-security-audit]
 ---
 
 # Security Audit Methodology

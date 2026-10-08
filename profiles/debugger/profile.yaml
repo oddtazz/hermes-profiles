@@ -3,4 +3,4 @@ skills:
   required:
     - artifact-pyramids
     - debugging-methodology
-    - systematic-debugging
+    - root-cause-debugging

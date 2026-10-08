@@ -1,5 +1,5 @@
 ---
-name: systematic-debugging
+name: root-cause-debugging
 description: >-
   4-phase root cause debugging protocol: understand bugs before fixing.
   Use for ANY technical issue — test failures, production bugs, unexpected

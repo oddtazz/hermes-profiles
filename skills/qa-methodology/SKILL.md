@@ -7,7 +7,7 @@ license: MIT
 metadata:
   hermes:
     tags: [qa, testing, quality-assurance, test-automation, regression, CI, quality-gates, flaky-tests, quality-metrics]
-    related_skills: [verification-methodology, review-methodology, systematic-debugging, implementation-planning]
+    related_skills: [verification-methodology, review-methodology, root-cause-debugging, implementation-planning]
 ---
 
 # QA Methodology

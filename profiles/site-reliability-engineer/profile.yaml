@@ -5,5 +5,5 @@ skills:
     - site-reliability-engineering
   recommended:
     - mermaid-diagrams
-    - systematic-debugging
+    - root-cause-debugging
     - implementation-planning

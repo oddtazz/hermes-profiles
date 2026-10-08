@@ -7,7 +7,7 @@ license: MIT
 metadata:
   hermes:
     tags: [review, code-review, security-audit, architecture-review, verification, quality]
-    related_skills: [github-code-review, codebase-security-audit, systematic-debugging, requesting-code-review]
+    related_skills: [github-code-review, codebase-security-audit, root-cause-debugging, requesting-code-review]
 ---
 
 # Review Methodology
