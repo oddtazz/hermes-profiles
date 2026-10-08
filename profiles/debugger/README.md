@@ -5,16 +5,20 @@ Systematic debugger — finds root causes before fixing. Expert in error investi
 ## Installation
 
 ```bash
-git clone https://github.com/magnus919/hermes-profiles.git ~/hermes-profiles
+git clone https://github.com/oddtazz/hermes-profiles.git ~/hermes-profiles
 ln -s ~/hermes-profiles/profiles/debugger ~/.hermes/profiles/
 hermes --profile debugger
 ```
 
 ## Skill Dependencies
 
-| Skill | Provides |
-|---|---|
-| `artifact-pyramids` | Progressive disclosure output format |
+Source: `shared` = repo `skills/` pool (symlinked); `bundled` = ships with Hermes, synced into the profile at runtime; `local` = lives only in this profile's `skills/`.
+
+| Skill | Source | Provides |
+|---|---|---|
+| `artifact-pyramids` | shared | Progressive disclosure output format |
+| `debugging-methodology` | shared | Root cause analysis, reproduction, isolation, verification protocols |
+| `root-cause-debugging` | shared | 4-phase root cause protocol: understand the bug before fixing it |
 
 ## Output Format
 

@@ -5,19 +5,22 @@ Implementation engineer — turns requirements and bug reports into tested, ship
 ## Installation
 
 ```bash
-git clone https://github.com/magnus919/hermes-profiles.git ~/hermes-profiles
+git clone https://github.com/oddtazz/hermes-profiles.git ~/hermes-profiles
 ln -s ~/hermes-profiles/profiles/coder ~/.hermes/profiles/
 hermes --profile coder
 ```
 
 ## Skill Dependencies
 
-| Skill | Provides |
-|---|---|
-| `artifact-pyramids` | Progressive disclosure output format |
-| `test-driven-development` | RED-GREEN-REFACTOR — tests before code |
-| `requesting-code-review` | Pre-commit verification: security scan, quality gates, independent reviewer |
-| `simplify-code` | Parallel 4-agent cleanup pass before presenting changes |
+Source: `shared` = repo `skills/` pool (symlinked); `bundled` = ships with Hermes, synced into the profile at runtime; `local` = lives only in this profile's `skills/`.
+
+| Skill | Source | Provides |
+|---|---|---|
+| `artifact-pyramids` | shared | Progressive disclosure output format |
+| `test-driven-development` | bundled | RED-GREEN-REFACTOR — tests before code |
+| `requesting-code-review` | bundled | Pre-commit verification: security scan, quality gates, independent reviewer |
+| `simplify-code` | bundled | Parallel 4-agent cleanup pass before presenting changes |
+| `twelve-factor-agents` | local | Design rules for LLM agents and tool-calling loops |
 
 ## Output Format
 

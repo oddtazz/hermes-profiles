@@ -2,6 +2,9 @@ description: "Coder — implements features and fixes as tested, shippable code.
 skills:
   required:
     - artifact-pyramids
+  bundled:
     - test-driven-development
     - requesting-code-review
     - simplify-code
+  local:
+    - twelve-factor-agents

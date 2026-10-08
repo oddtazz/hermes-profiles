@@ -81,6 +81,7 @@ hermes-profiles/
 └── profiles/
     ├── backend-engineer/             ← API implementation, service logic, database access
     ├── brand-designer/               ← Brand identity, visual systems
+    ├── coder/                        ← TDD implementation, review gate, cleanup pass
     ├── copy-editor/                  ← Line-level editing, proofreading
     ├── curator/                      ← Knowledge management, atomic notes
     ├── data-architect/               ← Data modeling, pipelines, governance

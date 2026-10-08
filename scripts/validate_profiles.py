@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -105,12 +106,20 @@ def skill_names_under(path: Path) -> set[str]:
     return names
 
 
-def declared_skills(profile_yaml: dict[str, Any], profile_path: Path) -> set[str]:
+def declared_skills(
+    profile_yaml: dict[str, Any], profile_path: Path, buckets: tuple[str, ...] = ("required", "recommended")
+) -> set[str]:
+    """Skill names in the given profile.yaml buckets.
+
+    required / recommended: shared-pool skills, symlinked into the profile.
+    bundled: skills Hermes ships and syncs into the profile at runtime (not in this repo).
+    local: skills that live only in this profile's skills/ directory.
+    """
     skills = profile_yaml.get("skills")
     if not isinstance(skills, dict):
         raise ValueError(f"{profile_path}: `skills` must be a mapping")
     declared: set[str] = set()
-    for bucket in ("required", "recommended"):
+    for bucket in buckets:
         values = skills.get(bucket, [])
         if values is None:
             continue
@@ -125,6 +134,20 @@ def reachable_profile_skills(profile_dir: Path) -> set[str]:
     if not skill_dir.exists():
         return set()
     return skill_names_under(skill_dir.resolve())
+
+
+def tracked_symlinks(root: Path, profiles_dir: Path) -> list[Path]:
+    """Symlinks git tracks under profiles/. Hermes uses each profile dir as its home and writes
+    runtime state there (lsp/, plugins/, ...); those paths are git-ignored and never reach CI, so
+    the local run checks the same set CI sees. Falls back to a full walk outside a git checkout."""
+    try:
+        out = subprocess.run(
+            ["git", "-C", str(root), "ls-files", "-s", "--", str(profiles_dir.relative_to(root))],
+            check=True, capture_output=True, text=True,
+        ).stdout
+    except (OSError, subprocess.CalledProcessError):
+        return sorted(p for p in profiles_dir.rglob("*") if p.is_symlink())
+    return sorted(root / line.split("\t", 1)[1] for line in out.splitlines() if line.startswith("120000 "))
 
 
 def main() -> int:
@@ -185,9 +208,26 @@ def main() -> int:
                 + ", ".join(missing_from_profile)
             )
 
-    for link in sorted(profiles_dir.rglob("*")):
-        if not link.is_symlink():
+        try:
+            local = declared_skills(data, profile_yaml_path.relative_to(root), ("local",))
+            bundled = declared_skills(data, profile_yaml_path.relative_to(root), ("bundled",))
+        except ValueError as exc:
+            errors.append(str(exc).replace(str(root) + os.sep, ""))
             continue
+        missing_local = sorted(local - reachable)
+        if missing_local:
+            errors.append(
+                f"{profile_yaml_path.relative_to(root)}: declares local skills not present in profile skills/: "
+                + ", ".join(missing_local)
+            )
+        shadowing = sorted(bundled & (declared | local))
+        if shadowing:
+            errors.append(
+                f"{profile_yaml_path.relative_to(root)}: bundled skills also declared as shared/local "
+                "(same name twice makes skill_view ambiguous): " + ", ".join(shadowing)
+            )
+
+    for link in tracked_symlinks(root, profiles_dir):
         target = os.readlink(link)
         if os.path.isabs(target):
             errors.append(f"{link.relative_to(root)}: symlink target is absolute: {target}")

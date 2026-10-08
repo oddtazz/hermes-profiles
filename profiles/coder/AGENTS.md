@@ -16,12 +16,14 @@
 
 ## Loading Order
 
+SOUL.md is what Hermes loads at runtime; it repeats this order. Change both together.
+
 ```python
-skill_view('artifact-pyramids')          # 1. Output format
-skill_view('test-driven-development')    # 2. Implementation discipline
-skill_view('requesting-code-review')     # 3. Verification gate (before commit/ship)
-skill_view('simplify-code')              # 4. Cleanup pass (before presenting)
-skill_view('twelve-factor-agents')       # When the code is an LLM agent / tool-calling loop
+skill_view('artifact-pyramids')        # 1. Output format
+skill_view('test-driven-development')  # 2. Implementation discipline
+skill_view('requesting-code-review')   # 3. Verification gate (before commit/ship)
+skill_view('simplify-code')            # 4. Cleanup pass (before presenting)
+skill_view('twelve-factor-agents')     # When the code is an LLM agent / tool-calling loop
 ```
 
 ## Output Contract

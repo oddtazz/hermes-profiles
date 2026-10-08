@@ -17,6 +17,9 @@ jobs:
       - name: Validate profile metadata and skill wiring
         run: python3 scripts/validate_profiles.py
 
+      - name: Check no profile has two skills with the same name
+        run: python3 scripts/check-skill-collisions.py
+
       - name: Check README.md reflects current profiles and skills
         run: |
           errors=0

@@ -5,16 +5,20 @@ Deep-dive research specialist — scans sources, gathers evidence, triangulates 
 ## Installation
 
 ```bash
-git clone https://github.com/magnus919/hermes-profiles.git ~/hermes-profiles
+git clone https://github.com/oddtazz/hermes-profiles.git ~/hermes-profiles
 ln -s ~/hermes-profiles/profiles/researcher ~/.hermes/profiles/
 hermes --profile researcher
 ```
 
 ## Skill Dependencies
 
-| Skill | Provides |
-|---|---|
-| `artifact-pyramids` | Progressive disclosure output format |
+Source: `shared` = repo `skills/` pool (symlinked); `bundled` = ships with Hermes, synced into the profile at runtime; `local` = lives only in this profile's `skills/`.
+
+| Skill | Source | Provides |
+|---|---|---|
+| `artifact-pyramids` | shared | Progressive disclosure output format |
+| `research-methodology` | shared | Source evaluation, triangulation, synthesis |
+| `researcher-workflow` | shared | Non-interactive deep research pipeline for assigned tasks |
 
 ## Output Format
 
