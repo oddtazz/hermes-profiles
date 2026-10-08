@@ -5,9 +5,15 @@
 #   pyramid-status.sh [--layer 1|2|3] [--json] <project-directory>
 #
 # Scans the directory for:
-#   Layer 1: files matching 01-*, *summary*, *dossier*
-#   Layer 2: files matching 02-*, *analysis*, *market*, *competitive*, *technical*
-#   Layer 3: files matching 03-*, *dossier*, *source*, *transcript*, *raw*, *data*
+#   Layer 1: files under the canonical 01-*/ directory, or matching 01-*, 1-*, *summary*
+#   Layer 2: files under the canonical 02-*/ directory, or matching 02-*, 2-*, *analysis*,
+#            *market*, *competitive*, *technical*, *feasibility*
+#   Layer 3: files under the canonical 03-*/ directory, or matching 03-*, 3-*, *dossier*,
+#            *source*, *transcript*, *raw*, *data*
+#
+# The numbered layer directories shown in SKILL.md (01-summary/, 02-analysis/,
+# 03-dossiers/) are the canonical layout, so they are matched by PATH. Filename patterns
+# are only the fallback for flat projects that have no layer directories.
 #
 # Checks naming convention, content structure, and cross-references.
 
@@ -23,6 +29,7 @@ NC='\033[0m'
 # --- Defaults ---
 LAYER_FILTER=""
 JSON_MODE=false
+STRICT=false
 
 # --- Parse arguments ---
 while [[ $# -gt 0 ]]; do
@@ -35,8 +42,14 @@ while [[ $# -gt 0 ]]; do
             JSON_MODE=true
             shift
             ;;
+        --strict)
+            STRICT=true
+            shift
+            ;;
         --help|-h)
-            echo "Usage: pyramid-status.sh [--layer 1|2|3] [--json] <project-directory>"
+            echo "Usage: pyramid-status.sh [--layer 1|2|3] [--json] [--strict] <project-directory>"
+            echo "  --strict  also flag markdown files with no YAML frontmatter; research pyramids"
+            echo "            conventionally carry none, so this check is off by default"
             exit 0
             ;;
         *)
@@ -58,18 +71,24 @@ if [[ ! -d "$PROJECT_DIR" ]]; then
 fi
 
 # --- Search patterns by layer ---
-L1_PATTERNS=("01-*" "1-*" "*summary*" "*dossier*")
+L1_PATTERNS=("01-*" "1-*" "*summary*")
 L2_PATTERNS=("02-*" "2-*" "*analysis*" "*market*" "*competitive*" "*technical*" "*feasibility*")
 L3_PATTERNS=("03-*" "3-*" "*dossier*" "*source*" "*transcript*" "*raw*" "*data*")
 
 count_layer() {
     local search_dir="$1"
-    shift
+    local layer_dir="$2"          # canonical numbered layer dir, e.g. 01-*
+    shift 2
     local files=()
+    # Canonical layout from SKILL.md: every file under the numbered layer dir counts.
+    while IFS= read -r -d '' f; do
+        files+=("$f")
+    done < <(find "$search_dir" -maxdepth 2 -type f -path "*/${layer_dir}/*" \
+             -not -path '*/.git/*' -print0 2>/dev/null || true)
     for pattern in "$@"; do
         while IFS= read -r -d '' f; do
             files+=("$f")
-        done < <(find "$search_dir" -maxdepth 3 -type f -name "$pattern" -not -path '*/\.*' -print0 2>/dev/null || true)
+        done < <(find "$search_dir" -maxdepth 3 -type f -name "$pattern" -not -path "${search_dir%/}/.*" -not -path "${search_dir%/}/*/.*" -print0 2>/dev/null || true)
     done
     if [[ ${#files[@]} -eq 0 ]]; then
         echo "0"
@@ -142,11 +161,15 @@ check_cross_references() {
 }
 
 # --- Gather stats ---
-L1_COUNT=$(count_layer "$PROJECT_DIR" "${L1_PATTERNS[@]}")
-L2_COUNT=$(count_layer "$PROJECT_DIR" "${L2_PATTERNS[@]}")
-L3_COUNT=$(count_layer "$PROJECT_DIR" "${L3_PATTERNS[@]}")
+L1_COUNT=$(count_layer "$PROJECT_DIR" "01-*" "${L1_PATTERNS[@]}")
+L2_COUNT=$(count_layer "$PROJECT_DIR" "02-*" "${L2_PATTERNS[@]}")
+L3_COUNT=$(count_layer "$PROJECT_DIR" "03-*" "${L3_PATTERNS[@]}")
 
-L1_RESULTS=$(check_md_quality "$PROJECT_DIR" 2>/dev/null || true)
+if $STRICT; then
+    L1_RESULTS=$(check_md_quality "$PROJECT_DIR" 2>/dev/null || true)
+else
+    L1_RESULTS=""   # frontmatter is a SKILL.md convention, not a research-artifact one
+fi
 L1_FINDINGS="${L1_RESULTS%$'\n'*}"
 L1_ISSUES="${L1_RESULTS##*$'\n'}"
 
