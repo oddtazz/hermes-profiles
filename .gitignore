@@ -74,3 +74,26 @@ profiles/*/skills/social-media/
 profiles/*/skills/software-development/
 profiles/*/skills/web/
 profiles/*/skills/web-automation/
+
+# ── Runtime state Hermes writes into the profile home (profile dir == repo dir) ──
+profiles/*/auth.json
+profiles/*/gateway.pid
+profiles/*/processes.json
+profiles/*/.restart_pending.json
+profiles/*/lsp/
+profiles/*/backups/
+profiles/*/plugins/
+profiles/*/plugin-update-checks/
+profiles/*/wisdom/
+profiles/*/config.yaml.bak*
+profiles/*/skills/.locks/
+profiles/*/skills/.curator_backups/
+*.tmp
+
+# ── Runtime state at repo root ──
+installs/
+cache/
+auth.lock
+state.db*
+shared-state.db*
+kanban.db.*.lock
